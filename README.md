@@ -1,54 +1,53 @@
-# 🚀 Express TypeScript Boilerplate 2025
+# 🏔️ Lofty Views API
 
-[![CI](https://github.com/edwinhern/express-typescript/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/edwinhern/express-typescript-2024/actions/workflows/ci.yml)
-
-```code
-Hey There! 🙌
-🤾 that ⭐️ button if you like this boilerplate.
-```
+A modern REST API for managing scenic view collections built with Express.js and TypeScript.
 
 ## 🌟 Introduction
 
-Welcome to Express TypeScript Boilerplate 2025 – a simple and ready-to-use starting point for building backend web services with Express.js and TypeScript.
+Lofty Views API is a backend service for managing and sharing scenic view collections. Users can create, browse, and interact with view entries that represent beautiful locations with images, descriptions, and community engagement through "hearts".
 
-## 💡 Why We Made This
+## 💡 What It Does
 
-This starter kit helps you:
+This API enables:
 
-- ✨ Start new projects faster
-- 📊 Write clean, consistent code
-- ⚡ Build things quickly
-- 🛡️ Follow best practices for security and testing
+- 🏞️ **View Management**: Create and manage scenic view entries with rich metadata
+- 👥 **User System**: Full user lifecycle management with secure authentication patterns
+- ❤️ **Community Features**: Heart/like system for popular views
+- 📍 **Location Data**: Geographic information for each view
+- 🔍 **Discovery**: Browse and search through view collections
 
-## 🚀 What's Included
+## 🚀 Features
 
-- 📁 Well-organized folders: Files grouped by feature so you can find things easily
-- 💨 Fast development: Quick code running with `tsx` and error checking with `tsc`
-- 🌐 Latest Node.js: Uses the newest stable Node.js version from `.tool-versions`
-- 🔧 Safe settings: Environment settings checked with Zod to prevent errors
-- 🔗 Short import paths: Clean code with easy imports using path shortcuts
-- 🔄 Auto-updates: Keeps dependencies up-to-date with Renovate
-- 🔒 Better security: Built-in protection with Helmet and CORS settings
-- 📊 Easy tracking: Built-in logging with `pino-http`
-- 🧪 Ready-to-test: Testing tools with Vitest and Supertest already set up
-- ✅ Clean code: Consistent coding style with `Biomejs`
-- 📃 Standard responses: Unified API responses using `ServiceResponse`
-- 🐳 Easy deployment: Ready for Docker containers
-- 📝 Input checking: Request validation using Zod
-- 🧩 API browser: Interactive API docs with Swagger UI
+### Core API Endpoints
+
+- **Views Management**
+  - `GET /lofty-views` - List all scenic views
+  - `GET /lofty-views/:id` - Get specific view details
+  - `POST /lofty-views` - Create new view entries
+- **User Management**
+  - `GET /users` - List users
+  - `GET /users/:id` - Get user details
+  - `POST /users` - Create new users
+  - `DELETE /users/:id` - Remove users
+
+### Technical Features
+
+- 🏗️ **Clean Architecture**: Feature-based organization with layered design
+- 🔒 **Security First**: Helmet, CORS, and rate limiting built-in
+- ✅ **Type Safety**: Full TypeScript with Zod validation
+- 📊 **Observability**: Structured logging with Pino
+- 🧪 **Testing**: Comprehensive test suite with Vitest
+- 📝 **Documentation**: Interactive API docs with Swagger UI
+- 🐳 **Containerized**: Docker-ready for easy deployment
 
 ## 🛠️ Getting Started
-
-### Video Demo
-
-For a visual guide, watch the [video demo](https://github.com/user-attachments/assets/b1698dac-d582-45a0-8d61-31131732b74e) to see the setup and running of the project.
 
 ### Step-by-Step Guide
 
 #### Step 1: 🚀 Initial Setup
 
-- Clone the repository: `git clone https://github.com/edwinhern/express-typescript.git`
-- Navigate: `cd express-typescript`
+- Clone the repository
+- Navigate to project directory
 - Install dependencies: `pnpm install`
 
 #### Step 2: ⚙️ Environment Configuration
@@ -62,58 +61,57 @@ For a visual guide, watch the [video demo](https://github.com/user-attachments/a
 - Building: `pnpm build`
 - Production Mode: Set `NODE_ENV="production"` in `.env` then `pnpm build && pnpm start:prod`
 
-## 🤝 Feedback and Contributions
+## 🗺️ API Overview
 
-We'd love to hear your feedback and suggestions for further improvements. Feel free to contribute and join us in making backend development cleaner and faster!
+The Lofty Views API follows RESTful principles with a focus on scenic view management:
 
-🎉 Happy coding!
+### View Model
 
-## 📁 Folder Structure
-
-```code
-├── biome.json
-├── Dockerfile
-├── LICENSE
-├── package.json
-├── pnpm-lock.yaml
-├── README.md
-├── src
-│   ├── api
-│   │   ├── healthCheck
-│   │   │   ├── __tests__
-│   │   │   │   └── healthCheckRouter.test.ts
-│   │   │   └── healthCheckRouter.ts
-│   │   └── user
-│   │       ├── __tests__
-│   │       │   ├── userRouter.test.ts
-│   │       │   └── userService.test.ts
-│   │       ├── userController.ts
-│   │       ├── userModel.ts
-│   │       ├── userRepository.ts
-│   │       ├── userRouter.ts
-│   │       └── userService.ts
-│   ├── api-docs
-│   │   ├── __tests__
-│   │   │   └── openAPIRouter.test.ts
-│   │   ├── openAPIDocumentGenerator.ts
-│   │   ├── openAPIResponseBuilders.ts
-│   │   └── openAPIRouter.ts
-│   ├── common
-│   │   ├── __tests__
-│   │   │   ├── errorHandler.test.ts
-│   │   │   └── requestLogger.test.ts
-│   │   ├── middleware
-│   │   │   ├── errorHandler.ts
-│   │   │   ├── rateLimiter.ts
-│   │   │   └── requestLogger.ts
-│   │   ├── models
-│   │   │   └── serviceResponse.ts
-│   │   └── utils
-│   │       ├── commonValidation.ts
-│   │       ├── envConfig.ts
-│   │       └── httpHandlers.ts
-│   ├── index.ts
-│   └── server.ts
-├── tsconfig.json
-└── vite.config.mts
+```typescript
+{
+  id: number;
+  name: string;
+  description: string;
+  location: string;
+  imageUrl: string;
+  hearts: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 ```
+
+### Response Format
+
+All endpoints return standardized responses:
+
+```typescript
+{
+  success: boolean;
+  message: string;
+  responseObject: T | null;
+  statusCode: number;
+}
+```
+
+## 🎯 Development Status
+
+This project demonstrates modern API development practices and is actively being developed with:
+
+- ✅ User management system (complete)
+- 🚧 Lofty views CRUD operations (in progress)
+- 📋 Community features (planned)
+
+## 🏗️ Architecture
+
+```
+src/
+├── api/                    # Feature-based API modules
+│   ├── healthCheck/        # Health check endpoints
+│   ├── user/              # User management (complete)
+│   └── lofty-views/       # View management (planned)
+├── api-docs/              # OpenAPI/Swagger documentation
+├── common/                # Shared utilities and middleware
+└── server.ts              # Express server configuration
+```
+
+Built with Express.js, TypeScript, Zod validation, and comprehensive testing.

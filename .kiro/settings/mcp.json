@@ -1,0 +1,34 @@
+{
+	"mcpServers": {
+		"fetch": {
+			"command": "uvx",
+			"args": ["mcp-server-fetch"],
+			"env": {
+				"FASTMCP_LOG_LEVEL": "ERROR"
+			},
+			"disabled": false,
+			"autoApprove": ["fetch"]
+		},
+		"asana": {
+			"command": "npx",
+			"args": ["-y", "@roychri/mcp-server-asana"],
+			"env": {
+				"ASANA_ACCESS_TOKEN": "DONT_COMMIT_SECRETS"
+			},
+			"disabled": false,
+			"autoApprove": [
+				"asana_list_workspaces",
+				"asana_get_project",
+				"asana_search_tasks",
+				"asana_get_project_task_counts",
+				"asana_get_project_sections",
+				"asana_get_multiple_tasks_by_gid",
+				"asana_update_task",
+				"asana_update_task",
+				"asana_get_task",
+				"asana_create_task_story",
+				"asana_update_task"
+			]
+		}
+	}
+}

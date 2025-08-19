@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-import type { User } from "@/api/user/userModel";
+import type { CreateUserRequest, User } from "@/api/user/userModel";
 import { UserRepository } from "@/api/user/userRepository";
 import { ServiceResponse } from "@/common/models/serviceResponse";
 import { logger } from "@/server";
@@ -43,6 +43,39 @@ export class UserService {
 			const errorMessage = `Error finding user with id ${id}:, ${(ex as Error).message}`;
 			logger.error(errorMessage);
 			return ServiceResponse.failure("An error occurred while finding user.", null, StatusCodes.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	// Creates a new user
+	async create(userData: CreateUserRequest["body"]): Promise<ServiceResponse<User | null>> {
+		try {
+			const newUser = await this.userRepository.createAsync(userData);
+			return ServiceResponse.success<User>("User created successfully", newUser, StatusCodes.CREATED);
+		} catch (ex) {
+			const errorMessage = (ex as Error).message;
+			logger.error(`Error creating user: ${errorMessage}`);
+
+			// Handle specific error cases
+			if (errorMessage.includes("email already exists")) {
+				return ServiceResponse.failure("User with this email already exists", null, StatusCodes.CONFLICT);
+			}
+
+			return ServiceResponse.failure("An error occurred while creating user.", null, StatusCodes.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	// Deletes a user by their ID
+	async deleteById(id: number): Promise<ServiceResponse<null>> {
+		try {
+			const deleted = await this.userRepository.deleteByIdAsync(id);
+			if (!deleted) {
+				return ServiceResponse.failure("User not found", null, StatusCodes.NOT_FOUND);
+			}
+			return ServiceResponse.success<null>("User deleted successfully", null, StatusCodes.NO_CONTENT);
+		} catch (ex) {
+			const errorMessage = `Error deleting user with id ${id}: ${(ex as Error).message}`;
+			logger.error(errorMessage);
+			return ServiceResponse.failure("An error occurred while deleting user.", null, StatusCodes.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

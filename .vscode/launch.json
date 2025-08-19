@@ -6,7 +6,7 @@
 			"type": "node",
 			"request": "launch",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run", "dev"],
+			"runtimeArgs": ["run", "start:dev"],
 			"console": "integratedTerminal"
 		},
 		{
@@ -14,7 +14,7 @@
 			"type": "node",
 			"request": "launch",
 			"runtimeExecutable": "npm",
-			"runtimeArgs": ["run", "start"],
+			"runtimeArgs": ["run", "start:prod"],
 			"console": "integratedTerminal",
 			"preLaunchTask": "npm: build"
 		}

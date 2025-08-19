@@ -19,3 +19,19 @@ export const UserSchema = z.object({
 export const GetUserSchema = z.object({
 	params: z.object({ id: commonValidations.id }),
 });
+
+// Input Validation for 'POST users' endpoint
+export const CreateUserSchema = z.object({
+	body: z.object({
+		name: z.string().min(1, "Name is required"),
+		email: z.string().email("Valid email is required"),
+		age: z.number().int().min(0, "Age must be a non-negative integer"),
+	}),
+});
+
+export type CreateUserRequest = z.infer<typeof CreateUserSchema>;
+
+// Input Validation for 'DELETE users/:id' endpoint
+export const DeleteUserSchema = z.object({
+	params: z.object({ id: commonValidations.id }),
+});
