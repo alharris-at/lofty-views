@@ -24,11 +24,15 @@
 				"asana_get_project_sections",
 				"asana_get_multiple_tasks_by_gid",
 				"asana_update_task",
-				"asana_update_task",
 				"asana_get_task",
-				"asana_create_task_story",
-				"asana_update_task"
+				"asana_create_task_story"
 			]
+		},
+		"persistproc": {
+			"command": "npx",
+			"args": ["mcp-remote", "http://127.0.0.1:8947/mcp/", "--transport", "http-only"],
+			"disabled": false,
+			"autoApprove": ["ctrl", "list", "output"]
 		}
 	}
 }

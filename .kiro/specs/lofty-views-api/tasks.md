@@ -2,7 +2,7 @@
 
 #[[file:.kiro/steering/asana.md]]
 
-- [ ] 1. Create working GET /lofty-views endpoint (List All Views)
+- [x] 1. Create working GET /lofty-views endpoint (List All Views)
 
   - Create complete feature structure with model, repository, service, controller, and router
   - Implement GET /lofty-views endpoint that returns all lofty views with sample data

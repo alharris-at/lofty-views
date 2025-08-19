@@ -55,11 +55,42 @@ This API enables:
 - Create `.env`: Copy `.env.template` to `.env`
 - Update `.env`: Fill in necessary environment variables
 
-#### Step 3: 🏃‍♂️ Running the Project
+#### Step 3: 🤖 AI-Enhanced Development (Optional)
 
-- Development Mode: `pnpm start:dev`
-- Building: `pnpm build`
-- Production Mode: Set `NODE_ENV="production"` in `.env` then `pnpm build && pnpm start:prod`
+For seamless AI agent collaboration, install persistproc:
+
+```bash
+# Install persistproc for process management
+pipx install persistproc
+
+# Start the persistproc server (in a dedicated terminal)
+persistproc serve
+```
+
+#### Step 4: 🏃‍♂️ Running the Project
+
+**With AI Agent Support (Recommended):**
+
+```bash
+# Development with persistproc (enables AI monitoring)
+persistproc pnpm start:dev
+
+# Testing with persistproc
+persistproc pnpm test:cov
+```
+
+**Traditional Development:**
+
+```bash
+# Development Mode
+pnpm start:dev
+
+# Building
+pnpm build
+
+# Production Mode
+NODE_ENV="production" pnpm build && pnpm start:prod
+```
 
 ## 🗺️ API Overview
 
@@ -101,6 +132,33 @@ This project demonstrates modern API development practices and is actively being
 - 🚧 Lofty views CRUD operations (in progress)
 - 📋 Community features (planned)
 
+## 🤖 AI-Enhanced Development
+
+This project includes **persistproc** integration for seamless AI agent collaboration:
+
+### Benefits
+
+- 🔍 **Real-time Monitoring**: AI agents can see live server logs and errors
+- 🔄 **Process Management**: Agents can restart services when issues occur
+- 🚀 **Multi-Agent Support**: Multiple AI tools can work with the same processes
+- 📊 **Centralized Logging**: All development processes in one place
+
+### Quick Start with AI Agents
+
+1. **Start persistproc server**: `persistproc serve`
+2. **Run development server**: `persistproc pnpm start:dev`
+3. **Ask your AI agent**: "Show me the server logs" or "Restart the dev server"
+
+### Supported Commands
+
+```bash
+# Process management through AI agents
+"List running processes"
+"Show me the latest server logs"
+"Restart the development server"
+"Check for any errors in the logs"
+```
+
 ## 🏗️ Architecture
 
 ```
@@ -114,4 +172,4 @@ src/
 └── server.ts              # Express server configuration
 ```
 
-Built with Express.js, TypeScript, Zod validation, and comprehensive testing.
+Built with Express.js, TypeScript, Zod validation, comprehensive testing, and AI agent integration via persistproc.
